@@ -1,38 +1,596 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Usuario
-        </title>
-    </head>
+<head>
+    <title>Usuario</title>
     <style>
-        body{
-            background-color: #000000;
+        body {
+            margin: 0; 
         }
-        div{
-            color: aliceblue;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            text-align: center;
-        }
-        .centrado {
-            text-align: center;
+        
+        .contenedor {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
         }
 
+        .contenedorF {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
         
-       
+        .menu {
+            display: flex;
+            text-decoration: none;
+        }
+
+        .menu a{
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .menu a:hover {
+            color: inherit;
+        }
+        /*P usado para indicar el precio*/
+        p{
+            text-align: center;
+            text-transform: uppercase;
+        }
+        /*Divs del Menu del encabezado*/
+        .div1, .div2 {
+            margin-left: 6vw;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 7vw;
+        } 
+        
+        @media (max-width: 600px) {
+            .contenedor {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .menu {
+                margin-top: 20px;
+            }
+            
+            .menu div {
+                margin: 5px 0;
+            }
+        }
+        /*Color que se da al pasar por el raton*/
+        .menu .div1:hover,
+        .menu .div2:hover {
+            background-color: #a23f2d;
+        }
+        /*h2 texto Cafetis118*/
+        h2{
+            font-family: Georgia, serif;
+            margin: 0; /* Elimina el margen predeterminado del título */
+        }
+        /*h1 texto de Submenus*/
+        h1{
+            text-align: center;
+            border-bottom: 3px solid rgb(204, 142, 7); /* Agrega una línea negra de 2px debajo del h1 */
+            display: 20px; /* Asegura que el borde se ajuste al contenido */
+            padding-bottom: 5px; /* Espacio entre el texto y la línea */
+        }
+        /*h4 texto de pie de pagina*/
+        h4{
+            margin-left: 3vw;
+            font-weight: normal;
+        }
+        /*Imagen del Cebtis*/
+        img{width: 100%;
+            height: 28vw}
+
+    /*Estilos del menu cafeteria*/
+    .menuC {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 20px;
+    }
+    /*Estilo para productos*/
+    .product {
+        width: 200px;
+        border: 1px solid #ccc;
+        border-radius: 5%;
+        margin: 6px;
+        padding: 10px;
+        text-align: center;
+        font-family: Arial;
+    }
+    /*Estilo de la imagen del producto*/
+    .product img {
+        max-width: 100%;
+        height: 200px;
+        border-radius: 5%;
+    }
+    /*Boton para agregar al carrito*/
+    .btn-add-to-cart {
+        background-color: #DE9F58;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+    } 
+    /*Boton para ver el carrito*/
+    .btn-car {
+            background-color: #da4a26;
+            color: white;
+            border: none; 
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;  
+            align-items: left;
+            margin-right: 2vw; 
+            cursor: pointer; 
+            width: 15vw;
+            height: 3vw; 
+    } 
+    /*Estilo del Pie de Pagina*/
+    footer { 
+        background-color: #F8F8EC;
+        color: rgb(0, 0, 0);
+        font-family: Palatino; 
+        font-size: 20px;
+        padding: 5px 0;
+        text-align: left;
+        position: fixed;
+        bottom: 0;
+        width: 100%; 
+    }
+    /*Espacio entre elementos del footer*/
+    .footer-content{
+        margin: 0 10px;
+    }
+    /*Espacio usado al final de la pagina*/
+    .espacio{
+        width: 100%;
+        height: 7vw;
+        border-bottom: 3px solid rgb(204, 142, 7);
+    }
+    /*Estilo de la pantalla de ver carrito*/
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.4);
+    }
+    /*Estilo de los elementos del contenido*/
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 50%;
+        max-width: 600px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        position: relative;
+    }
+    /*Estilo del boton de cerrar modal*/
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    /*Estilo de boton de cerrar modal hover y focus*/
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    /*Estilo de los elementos agregados al carrito*/
+    .cart-items {
+        list-style-type: none;
+        padding: 0;
+    }
+    .cart-items li{
+        margin-bottom: 10px;
+    }
+        /*Estilo del boton para pagar*/
+    .btn-to-pay{
+        background-color: #3F2C2E;
+        color: rgb(255, 253, 253);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    } 
     </style>
-    <body>
-        <div class="centrado">
-            <img src="banner.gif" >
+</head>
+<body>  
+    <div class="contenedor">
+        <h2>CAFETIS 118</h2>
+        <div class="menu">
+            <div class="div1"><a href="#comida"><p>Comida</p></a></div>
+            <div class="div1"><a href="#frituras"><p>Frituras</p></a></div>
+            <div class="div2"><a href="#postres"><p>Postres</p></a></div>
+            <div class="div2"><a href="#bebidas"><p>Bebidas</p></a></div>
         </div>
-            
-        
-        <div>
-            
+    </div>
+ 
+    <div><img src="Img/cbtis.jpg"></div>
+ 
+    <div id="comida">
+        <h1>Comida</h1>
+    </div>
+    <div class="menuC">
+        <div class="product">
+            <img src="Img/tacos.jpg" alt="Tres Tacos y una Coca">
+            <h3>Tres Tacos y una Coca</h3>
+            <p>$60</p>
+            <button class="btn-add-to-cart" data-name="3 Tacos y una Coca Cola" data-price="60">Agregar al Carrito</button>
+        </div>
+        <div class="product">
+            <img src="Img/supergringa.jpg" alt="Producto 2">
+            <h3>Supergringa</h3>
+            <p>$65</p>
+            <button class="btn-add-to-cart" data-name="SuperGringa" data-price="65">Agregar al Carrito</button>
+        </div>
+        <div class="product">
+            <img src="Img/cb.jpg" alt="Producto 2">
+            <h3>Chicken Bake</h3>
+            <p>$50</p>
+            <button class="btn-add-to-cart" data-name="Chicken Bake" data-price="50">Agregar al Carrito</button>
+        </div>
+        <div class="product">
+            <img src="Img/sopes.jpg" alt="Producto 2">
+            <h3>Sopes</h3>
+            <p>$50</p>
+            <button class="btn-add-to-cart" data-name="Sopes" data-price="50">Agregar al Carrito</button>
+        </div>
+        <div class="product">
+            <img src="Img/chilaquiles.jpg" alt="Producto 2">
+            <h3>Chilaquiles</h3>
+            <p>$50</p>
+            <button class="btn-add-to-cart" data-name="Chilaquiles" data-price="50">Agregar al Carrito</button>
+        </div>
+        <div class="product">
+            <img src="Img/hg.jpg" alt="Producto 2">
+            <h3>Huevos al Gusto</h3>
+            <p>$40</p>
+            <button class="btn-add-to-cart" data-name="Huevos al Gusto" data-price="40">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/burrito.jpg" alt="Producto 2">
+            <h3>Burrito</h3>
+            <p>$50</p>
+            <button class="btn-add-to-cart" data-name="Burrito" data-price="50">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/papas.jpg" alt="Producto 2">
+            <h3>Papas a la Francesa</h3>
+            <p>$35</p>
+            <button class="btn-add-to-cart" data-name="Papas a la Francesa(vaso)" data-price="35">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/torta.jpg" alt="Producto 2">
+            <h3>Torta de Chilaquiles</h3>
+            <p>$50</p>
+            <button class="btn-add-to-cart" data-name="Torta de Chilaquiles" data-price="50">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/hamburguesas.jpg" alt="Producto 2">
+            <h3>Hamburguesas</h3>
+            <p>$65</p>
+            <button class="btn-add-to-cart" data-name="Hamburguesas" data-price="65">Agregar al Carrito</button>
+        </div> 
+    </div>
+    
+    <div id="frituras">
+        <h1>Frituras</h1>
+    </div>
+    <div class="menuC">
+        <div class="product">
+            <img src="Img/doritosN.jpg" alt="Producto 2">
+            <h3>Doritos Incognita</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Doritos Incognita" data-price="22">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/doritosR.jpg" alt="Producto 2">
+            <h3>Doritos Nacho</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Doritos Nacho" data-price="22">Agregar al Carrito</button>
+        </div>    
+        <div class="product">
+            <img src="Img/takis.jpg" alt="Producto 2">
+            <h3>Takis Normales</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Takis Normales" data-price="22">Agregar al Carrito</button>
+        </div>  
+        <div class="product">
+            <img src="Img/takisA.jpg" alt="Producto 2">
+            <h3>Takis Azules</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Takis Azules" data-price="22">Agregar al Carrito</button>
+        </div>  
+        <div class="product">
+            <img src="Img/sabritas.jpg" alt="Producto 2">
+            <h3>Sabritas Clasicas</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Sabritas Clasicas" data-price="22">Agregar al Carrito</button>
+        </div>  
+        <div class="product">
+            <img src="Img/sabritasE.jpg" alt="Producto 2">
+            <h3>Sabritas Especias</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Sabritas Especias" data-price="22">Agregar al Carrito</button>
+        </div>  
+        <div class="product">
+            <img src="Img/sabritasL.jpg" alt="Producto 2">
+            <h3>Sabritas Limon</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Sabritas Limon" data-price="22">Agregar al Carrito</button>
+        </div>  
+        <div class="product">
+            <img src="Img/sabritasA.jpg" alt="Producto 2">
+            <h3>Sabritas Adobadas</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Sabritas Adobadas" data-price="22">Agregar al Carrito</button>
+        </div>  
+        <div class="product">
+            <img src="Img/totis.jpg" alt="Producto 2">
+            <h3>Totis Normales</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Totis Normales" data-price="22">Agregar al Carrito</button>
+        </div>  
+        <div class="product">
+            <img src="Img/totisR.jpg" alt="Producto 2">
+            <h3>Totis Picante</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Totis Picante" data-price="22">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/runners.jpg" alt="Producto 2">
+            <h3>Runners</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Runners" data-price="22">Agregar al Carrito</button>
+        </div>    
+        <div class="product">
+            <img src="Img/fritos.jpg" alt="Producto 2">
+            <h3>Fritos Normales</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Fritos Normales" data-price="22">Agregar al Carrito</button>
+        </div>  
+        <div class="product">
+            <img src="Img/fritosC.jpg" alt="Producto 2">
+            <h3>Fritos Chorizo</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Fritos Chorizo" data-price="22">Agregar al Carrito</button>
+        </div>  
+        <div class="product">
+            <img src="Img/chetosF.jpg" alt="Producto 2">
+            <h3>Chetos Flamin Hot</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Chetos Flamin Hot" data-price="22">Agregar al Carrito</button>
+        </div>  
+        <div class="product">
+            <img src="Img/chips.jpg" alt="Producto 2">
+            <h3>Chips Verdes</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Chips Verdes" data-price="22">Agregar al Carrito</button>
+        </div>  
+    </div>
+    
+    <div id="postres">
+        <h1>Postres</h1>
+    </div>
+    <div class="menuC">
+        <div class="product">
+            <img src="Img/hotcake.jpg" alt="Producto 2">
+            <h3>Pan Cake Chocolate</h3>
+            <p>$20</p>
+            <button class="btn-add-to-cart" data-name="Pan Cake Chocolate" data-price="20">Agregar al Carrito</button>
+        </div>  
+        <div class="product">
+            <img src="Img/galleta.jpg" alt="Producto 2">
+            <h3>Galleta Choco Grande</h3>
+            <p>$20</p>
+            <button class="btn-add-to-cart" data-name="Galleta Choco Grande" data-price="20">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/paleta.jpg" alt="Producto 2">
+            <h3>Paleta de Hielo Mango</h3>
+            <p>$20</p>
+            <button class="btn-add-to-cart" data-name="Paleta de Hielo Mango" data-price="20">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/pastel.jpg" alt="Producto 2">
+            <h3>Rebada de Pastel</h3>
+            <p>$20</p>
+            <button class="btn-add-to-cart" data-name="Rebanada de Pastel" data-price="20">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/dona.jpg" alt="Producto 2">
+            <h3>Dona Chocolate</h3>
+            <p>$20</p>
+            <button class="btn-add-to-cart" data-name="Dona Chocolate" data-price="20">Agregar al Carrito</button>
+        </div>     
+    </div>
+    
+    <div id="bebidas">
+        <h1>Bebidas</h1>
+    </div>
+    <div class="menuC">
+        <div class="product">
+            <img src="Img/aguaJ.jpg" alt="Producto 2">
+            <h3>Agua de Jamaica</h3>
+            <p>$25</p>
+            <button class="btn-add-to-cart" data-name="Agua de Jamaica" data-price="25">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/aguaP.jpg" alt="Producto 2">
+            <h3>Agua de Piña</h3>
+            <p>$25</p>
+            <button class="btn-add-to-cart" data-name="Agua de Piña" data-price="25">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/agua.jpg" alt="Producto 2">
+            <h3>Agua Natural 1l</h3>
+            <p>$10</p>
+            <button class="btn-add-to-cart" data-name="Agua Natural 1l" data-price="10">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/agua.jpg" alt="Producto 2">
+            <h3>Agua Natural 1/2L</h3>
+            <p>$5</p>
+            <button class="btn-add-to-cart" data-name="Agua Natural 1/2L" data-price="5">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/arizona.jpg" alt="Producto 2">
+            <h3>Arizona Sandia</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Arizona Sandia" data-price="22">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/arizonaF.jpg" alt="Producto 2">
+            <h3>Arizona Frutas</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Arizona Frutas" data-price="22">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/arizonaM.jpg" alt="Producto 2">
+            <h3>Arizona Mango</h3>
+            <p>22$</p>
+            <button class="btn-add-to-cart" data-name="Arizona Mango" data-price="22">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/jumex.jpg" alt="Producto 2">
+            <h3>Jumex de Mango</h3>
+            <p>$22</p>
+            <button class="btn-add-to-cart" data-name="Jumex de Mango" data-price="22">Agregar al Carrito</button>
+        </div> 
+        <div class="product">
+            <img src="Img/danone.jpg" alt="Producto 2">
+            <h3>Danone Yoghurt</h3>
+            <p>$20</p>
+            <button class="btn-add-to-cart" data-name="Danonoe Yoghurt" data-price="20">Agregar al Carrito</button>
+        </div>   
+        <div class="product">
+            <img src="Img/yakult.jpg" alt="Producto 2">
+            <h3>Yakult</h3>
+            <p>$8</p>
+            <button class="btn-add-to-cart" data-name="Yakult" data-price="8">Agregar al Carrito</button>
+        </div>  
+    </div>
+    
+    <div class="espacio"></div>
 
+    <div class="contenedor">
+        <div class="contenedorF">
+            <footer>
+                <div class="footer-content">
+                    <h4>Número de artículos: <span id="item-count">0</span> - Cantidad: <span id="item-quantity">0</span>$ - Tiempo de espera: <span id="wait-time">minutos</span></h4>
+                </div>
+                <div class="footer-content">
+                    <button class="btn-car" onclick="showCart()">Ver Carrito</button>
+                </div>
+            </footer>
         </div>
-    </body>
+    </div>
+    
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Carrito de Compras</h2>
+            <ul class="cart-items" id="cart-items"></ul>
+            <h4>Total a Pagar: <span id="total-price"></span></h4>
+            <button class="btn-to-pay" onclick="pay()">Pagar</button>
+        </div>
+    </div>
+
+    <script>
+        // Arrays y variables usados
+        var cartItems = [];
+        var itemCount = 0;
+        var totalPrice = 0;
+        var maxItems = 5;
+    
+        // Función para mostrar el contenido del carrito
+        function showCart() {
+            var cartContent = '';
+            var cartList = document.getElementById('cart-items');
+            cartList.innerHTML = '';
+            for (var i = 0; i < cartItems.length; i++) {
+                cartContent += '<li>' + cartItems[i].name + ' - $' + cartItems[i].price.toFixed(2) + '</li>';
+            }
+            if (cartContent === '') {
+                cartContent = 'El carrito está vacío';
+            }
+            cartList.innerHTML = cartContent;
+            document.getElementById('total-price').textContent = totalPrice.toFixed(2);
+            document.getElementById('myModal').style.display = 'block';
+        }
+    
+        // Función para agregar un producto al carrito
+        function addToCart(button) {
+            var itemName = button.getAttribute('data-name');
+            var itemPrice = parseFloat(button.getAttribute('data-price'));
+    
+            if (itemCount < maxItems) {
+                itemCount++;
+                totalPrice += itemPrice;
+                cartItems.push({ name: itemName, price: itemPrice });
+                updateCartTotal();
+            } else {
+                alert('Solo se pueden comprar hasta 5 productos.');
+            }
+        }
+    
+        // Función para actualizar el contenido del footer
+        function updateCartTotal() {
+            document.getElementById('item-count').textContent = itemCount;
+            document.getElementById('item-quantity').textContent = totalPrice.toFixed(2); 
+        }
+    
+        // Función para cerrar la ventana modal
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none';
+        }
+    
+        // Función para pagar
+        function pay() { 
+            if(itemCount == 0){
+                alert('No hay productos');
+            } else {
+                alert('Pago procesado correctamente'); 
+                cartItems = [];
+                itemCount = 0;
+                totalPrice = 0;
+                updateCartTotal();
+                closeModal();
+            }
+        }
+    
+        // Agregar evento click a los botones de agregar al carrito
+        var addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
+        addToCartButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                addToCart(button);
+            });
+        });
+    </script>
+    
+</body>
 </html>
