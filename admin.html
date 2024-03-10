@@ -14,21 +14,41 @@
                 text-align: center;
                 text-decoration: none;
                 margin: auto;
+                background-color: #AF6E61;
+                border: #AF6E61;
+                font-size: px;
+            }
+            .ops{
+                background: ##C39A78;
+            }
+            body{
+            background-color: #673B2A;
+        }
+            legend{
+                color:#C39A78;
+                font-size: 34px;
+
+            }
+            button{
+                background-color: #AF6E61;
+                color: #C39A78;
+                border:#FCE3D2 ;
+                font-size: 34px;
             }
         </style>
 
     </head>
     <body>
-
-        <fieldset>
-
-            <legend>Precios</legend>
-            <button onclick="">Comida</button>
-            <button onclick="">Bebida</button>
-            <button onclick="">Postres</button>
-            <button onclick=""> Frituras</button>
-
+        <div class="ops">
+            <fieldset>
+            <legend>Inicio</legend>
+            <div class="columna ad"><p><a href="admin.html"><button onclick="">Administrador</button></a></p></div>
+            <div class="columna hi"><p><a href="comida.html"><button onclick="">Comida</button></a></p></div>
+            <div class="columna int"><p><a href="bebida.html"><button onclick="">Bebida</button></a></p></div>
+            <div class="columna di"><p><a href="postres.html"><button onclick="">Postres</button></a></p></div>
+            <div class="columna ev"><p><a href="frituras.html"><button onclick=""> Frituras</button></a></p></div>
         </fieldset>
-        
+        </div>
+
     </body>
 </html>

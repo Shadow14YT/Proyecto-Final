@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style>
+            
+            .ops{
+                background: ##C39A78;
+            }
+            body{
+            background-color: #673B2A;
+        }
+            
+            button{
+                background-color: #AF6E61;
+                color: #C39A78;
+                border:#FCE3D2 ;
+                font-size: 30px;
+            }
+		h1,p,th,tr{
+			color:#C39A78 ;
+		}
+		fieldset{
+                width: 300px;
+                text-align: center;
+                text-decoration: none;
+                margin: auto;
+                background-color: #AF6E61;
+                border: #AF6E61;
+                font-size: px;
+            }
+            .ops{
+            display: flex;
+            flex-flow: row;
+        }
+        .columna{
+            flex: 1 1 auto;
+        }
+        @media(max-width:600px){
+            .ops{
+                flex-flow: columna;
+            }
+        }
+        </style>
+</head>
+<body>
+		<fieldset>
+            <div class="ops">
+            <div class="columna ad"><p><a href="admin.html"><button onclick="">Administrador</button></a></p></div>
+            <div class="columna hi"><p><a href="comida.html"><button onclick="">Comida</button></a></p></div>
+            <div class="columna int"><p><a href="bebida.html"><button onclick="">Bebida</button></a></p></div>
+            <div class="columna di"><p><a href="postres.html"><button onclick="">Postres</button></a></p></div>
+            <div class="columna ev"><p><a href="frituras.html"><button onclick=""> Frituras</button></a></p></div></div>
+        </fieldset>
+        <table>       
+        	<caption><h1>Costos de Bebidas</h1></caption>
+        	<tr>
+                <th>Nombre: </th>
+                <th>Costos: </th>
+            </tr>
+            <tr>
+            	<th>Agua de Jamaica</th>
+            	<th>$25</th>
+            </tr>
+            <tr>
+            	<th>Agua de piña</th>
+            	<th>$25</th>
+            </tr>
+            <tr>
+            	<th>Agua natural 1L</th>
+            	<th>$10</th>
+            </tr>
+            <tr>
+            	<th>Agua natural 1/2L</th>
+            	<th>$5</th>
+            </tr>
+       		<tr>
+       			<th>Arizona Sandia</th>
+       			<th>$22</th>
+       		</tr>
+       		<tr>
+       			<th>Arizona Frutas</th>
+       			<th>$22</th>
+       		</tr>
+       		<tr>
+       			<th>Arizona mango</th>
+       			<th>$22</th>
+       		</tr>
+       		<tr>
+       			<th>Jumex de mango</th>
+       			<th>$22</th>
+       		</tr>
+       		<tr>
+       			<th>Danone yoghurt</th>
+       			<th>$20</th>
+       		</tr>
+       		<tr>
+       			<th>Yakult</th>
+       			<th>$8</th>
+       		</tr>
+		</table> 
+</body>
+</html>

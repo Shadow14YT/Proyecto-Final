@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>comida</title>
+	<style>
+            
+            .ops{
+                background: ##C39A78;
+            }
+            body{
+            background-color: #673B2A;
+        }
+            
+            button{
+                background-color: #AF6E61;
+                color: #C39A78;
+                border:#FCE3D2 ;
+                font-size: 30px;
+            }
+            h1,p,tr,th{
+			color:#C39A78 ;
+		}
+		fieldset{
+                width: 300px;
+                text-align: center;
+                text-decoration: none;
+                margin: auto;
+                background-color: #AF6E61;
+                border: #AF6E61;
+                font-size: px;
+            }
+            .ops{
+            display: flex;
+            flex-flow: row;
+        }
+        .columna{
+            flex: 1 1 auto;
+        }
+        @media(max-width:600px){
+            .ops{
+                flex-flow: columna;
+            }        
+        </style>
+</head>
+<body>
+	<fieldset>
+            <div class="ops">
+            <div class="columna ad"><p><a href="admin.html"><button onclick="">Administrador</button></a></p></div>
+            <div class="columna hi"><p><a href="comida.html"><button onclick="">Comida</button></a></p></div>
+            <div class="columna int"><p><a href="bebida.html"><button onclick="">Bebida</button></a></p></div>
+            <div class="columna di"><p><a href="postres.html"><button onclick="">Postres</button></a></p></div>
+            <div class="columna ev"><p><a href="frituras.html"><button onclick=""> Frituras</button></a></p></div></div>
+        </fieldset>
+        <table>       
+        <caption><h1>Costos de Bebidas</h1></caption>
+        <tr>
+                <th>Nombre: </th>
+                <th>Costos: </th>
+            </tr>
+        <tr>
+        	<th>Tacos(3), coca(1)</th>
+        	<th>$60</th>
+        </tr>
+        <tr>
+        	<th>Super gringa</th>
+        	<th>$65</th>
+        </tr>
+        <tr>
+        	<th>Chicken Bake</th>
+        	<th>$50</th>
+        </tr>
+        <tr>
+        	<th>Sopes</th>
+        	<th>$50</th>
+        </tr>
+        <tr>
+        	<th>Chilaquiles</th>
+        	<th>$50</th>
+        </tr>
+        <tr>
+        	<th>Huevos al gusto</th>
+        	<th>$40</th>
+        </tr>
+        <tr>
+        	<th>Burrito</th>
+        	<th>$50</th>
+        </tr>
+        <tr>
+        	<th>Papas a la francesa</th>
+        	<th>$35</th>
+        </tr>
+        <tr>
+        	<th>Torta de chilaquiles</th>
+        	<th>$50</th>
+        </tr>
+        <tr>
+        	<th>Hamburguesa</th>
+        	<th>$65</th>
+        </tr>
+    </table> 
+</body>
+</html>
