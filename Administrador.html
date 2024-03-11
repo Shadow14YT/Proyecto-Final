@@ -9,7 +9,10 @@
         <title>Administrador</title>
 
         <style>
-
+            body{
+                color: rgb(222, 209, 135);
+                background-color: darkgoldenrod;
+            }
             button{
                 color: white;
                 background-color: black;
@@ -27,14 +30,42 @@
     <body>
 
         <fieldset>
-            <legend>Datos del Administrador</legend>
-            <h4>Ingresa El Nombre De Usuario: <input type="text"></h4>
-            <h4>Ingresa El Correo Electronico: <input type="email"></h4>
-            <h4>Ingresa La Contraseña: <input type="password"></h4>
+            <form onsubmit="return validarDatos();" action="admin.html" method="post">
 
-            <button onclick="location.href='admin.html'">Entrar</button>
-            <button onclick="location.href='index.html'">Salir</button>
+                <label for="nombre">Nombre:</label><br>
+                <input type="text" id="nombre" name="nombre"><br><br>
+            
+                <label for="correo">Correo:</label><br>
+                <input type="email" id="correo" name="correo"><br><br>
+    
+                <label for="contraseña">Contraseña:</label>
+                <input type="password" id="contraseña" name="contraseña"><br><br>
+    
+                <input type="submit" value="Ingresar">
         </fieldset>
-
+        <script>
+            function validarDatos() {
+                var nombre = document.getElementById("nombre").value;
+                var correo = document.getElementById("correo").value;
+                var contraseña = document.getElementById("contraseña").value;
+    
+                if (nombre != "cafetis118" || correo != "cafetis@cbtis118.edu.mx" || contraseña != "cbtis118") {
+                    alert("Ingresa los datos correctament...");
+                    return false;
+                }
+    
+                if (correo.indexOf("@") === -1 || contraseña.length < 6) {
+                    alert("Correo inválido o contraseña muy corta.");
+                    return false;
+                }
+    
+                if (nombre == "admin" || correo == "admin@admin.com" || contraseña == "123456") {
+                    alert("Datos incorrectos, intenta de nuevo.");
+                    return false;
+                }
+    
+                return true;
+            }
+        </script>
     </body>
 </html>
