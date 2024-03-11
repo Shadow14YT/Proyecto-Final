@@ -1,1 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
 
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Document</title>
+
+        <style>
+            fieldset{
+                width: 300px;
+                text-align: center;
+                text-decoration: none;
+                margin: auto;
+                background-color: #AF6E61;
+                border: #AF6E61;
+                font-size: px;
+            }
+            .ops{
+                background: #C39A78;
+            }
+            body{
+            background-color: #673B2A;
+        }
+            legend{
+                color:#eed2bb;
+                font-size: 34px;
+
+            }
+            button{
+                background-color: #AF6E61;
+                color: #C39A78;
+                border:#FCE3D2 ;
+                font-size: 34px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div class="ops">
+            <fieldset>
+            <legend>Inicio</legend>
+            <div class="columna ad"><p><a href="admin.html"><button onclick="">Administrador</button></a></p></div>
+            <div class="columna hi"><p><a href="comida.html"><button onclick="">Comida</button></a></p></div>
+            <div class="columna int"><p><a href="bebida.html"><button onclick="">Bebida</button></a></p></div>
+            <div class="columna di"><p><a href="postres.html"><button onclick="">Postres</button></a></p></div>
+            <div class="columna ev"><p><a href="frituras.html"><button onclick=""> Frituras</button></a></p></div>
+        </fieldset>
+        </div>
+
+    </body>
+</html>
