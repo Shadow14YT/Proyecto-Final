@@ -11,18 +11,6 @@
                 alert("Por favor, completa todos los campos.");
                 return false;
             }
-
-            var correoValido = /\S+@\S+\.\S+/;
-            if (!correoValido.test(correo)) {
-                alert("Por favor, introduce un correo electrónico válido.");
-                return false;
-            }
-
-            if (contraseña.length < 4) {
-                alert("La contraseña debe tener al menos 4 caracteres.");
-                return false;
-            }
-
             window.location.href = "admin.html";
             return true;
         }
