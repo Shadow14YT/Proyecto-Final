@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
     <head>
+      <title>Formulario de Registro</title>
+    <script>
+        function validarFormulario() {
+            var nombre = document.getElementById("nombre").value;
+            var correo = document.getElementById("correo").value;
+            var contraseña = document.getElementById("contraseña").value;
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <title>Administrador</title>
-
-        <style>
-            body{
-                color: rgb(222, 209, 135);
-                background-color: darkgoldenrod;
-            }
-            fieldset{
-                width: 250px;
-                text-align: center;
-                text-decoration: none;
-                margin: auto;
+            if (nombre === "cafetis118" || correo === "cafetis@cbtis118.edu.mx" || contraseña === "cbtis118") {
+                alert("Por favor, completa todos los campos.");
+                return false;
             }
 
-        </style>
+            var correoValido = /\S+@\S+\.\S+/;
+            if (!correoValido.test(correo)) {
+                alert("Por favor, introduce un correo electrónico válido.");
+                return false;
+            }
 
-    </head>
+            if (contraseña.length < 4) {
+                alert("La contraseña debe tener al menos 4 caracteres.");
+                return false;
+            }
+
+            window.location.href = "admin.html";
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h2>Registro</h2>
+    <form onsubmit="return validarFormulario()">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre"><br>
+        <label for="correo">Correo electrónico:</label><br>
+        <input type="email" id="correo" name="correo"><br>
+        <label for="contraseña">Contraseña:</label><br>
+        <input type="password" id="contraseña" name="contraseña"><br><br>
+        <input type="submit" value="Registrarse">
+    </form>
     <body>
 
         <fieldset>
